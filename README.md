@@ -68,7 +68,7 @@ Yes, works on `http://`, `https://`, and `file://` URLs.
 
 ## License
 
-[Add license]
+MIT License - see LICENSE file for details.
 
 ## Credits
 
