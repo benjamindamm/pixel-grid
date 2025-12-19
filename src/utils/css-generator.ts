@@ -1,6 +1,14 @@
 import { GridSettings } from '@/types/grid';
 import { parseValue } from './grid-calculator';
 
+/**
+ * Generates a CSS background string for a grid overlay based on the provided settings.
+ * This function creates a multi-layered gradient that represents both inner and outer columns,
+ * as well as baseline guides, matching the format used in the original extension.
+ *
+ * @param settings - The grid settings object containing baseLine, innerColumnWidth, color, and alpha.
+ * @returns A CSS background string with multiple repeating-linear-gradient layers.
+ */
 export function generateGridBackground(
   settings: GridSettings
 ): string {
@@ -33,6 +41,13 @@ export function generateGridBackground(
   return `${innerGradient}, ${outerGradient}, ${innerBaseline}, ${outerBaseline}`;
 }
 
+/**
+ * Converts a color string (either RGB or hex) to an RGBA string with the specified alpha value.
+ *
+ * @param color - The input color string in RGB or hex format.
+ * @param alpha - The alpha value (0-1) to apply to the color.
+ * @returns A string representing the color in RGBA format.
+ */
 export function colorToRgba(color: string, alpha: number): string {
   // Handle rgb(r, g, b) format
   const rgbMatch = color.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
@@ -60,6 +75,15 @@ export function colorToRgba(color: string, alpha: number): string {
   return color;
 }
 
+/**
+ * Calculates the total width of the grid overlay based on viewport width and grid settings.
+ * This ensures the overlay width is divisible by the base line to prevent flickering.
+ *
+ * @param viewportWidth - The width of the viewport.
+ * @param baseLine - The base line value (e.g., '16px').
+ * @param innerColumnWidth - The inner column width value (e.g., '8px').
+ * @returns A string representing the calculated grid width in pixels.
+ */
 export function calculateGridWidth(
   viewportWidth: number,
   baseLine: string,
